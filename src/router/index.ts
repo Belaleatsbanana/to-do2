@@ -4,6 +4,7 @@ import { ROUTES } from '../utils/constants'
 
 /*
  * dont forget to edit requiresAuth
+ ! I forgot
  */
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,7 +32,7 @@ const router = createRouter({
       name: 'Home',
       component: () => import('../views/HomeView.vue'),
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
         showNavBar: true
       }
     },

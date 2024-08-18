@@ -119,7 +119,7 @@ const removeTaskFromApi = (task: Task) => {
                         <span v-if="task.editMode">
                             <select v-model="task.status" :placeholder="task.status">
                                 <option value="pending">Pending</option>
-                                <option value="in_Progress">In Progress</option>
+                                <option value="in_progress">In Progress</option>
                                 <option value="done">Done</option>
                             </select>
                         </span>
