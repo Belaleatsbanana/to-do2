@@ -1,11 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import WelcomeView from '../views/WelcomeView.vue'
 import { ROUTES } from '../utils/constants'
+import { ref } from 'vue'
 
 /*
  * dont forget to edit requiresAuth
  ! I forgot
  */
+
+export const isPopUpVisible = ref(false)
+export const popUpMessage = ref('')
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -72,6 +77,10 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth) && !token) {
     localStorage.setItem('lastRoute', to.fullPath)
     next({ name: 'Login' })
+  } else if (to.matched.some((record) => !record.meta.requiresAuth) && token) {
+    isPopUpVisible.value = true
+    popUpMessage.value = 'You are already logged in'
+    next({ name: 'Home' })
   } else {
     next()
   }

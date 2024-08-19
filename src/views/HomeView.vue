@@ -3,8 +3,8 @@ import { onMounted, ref } from 'vue';
 import ToDoTable from '../components/ToDoTable.vue';
 import { importTasks, TASKS, type Task } from '@/utils/module/task';
 import { ROUTES } from '@/utils/constants';
-
-
+import { isPopUpVisible, popUpMessage } from '@/router/index'
+import PopUp from '@/components/PopUp.vue';
 const tasks = ref<Task[]>([]);
 
 onMounted(
@@ -37,6 +37,7 @@ onMounted(
         <div class="table-container">
             <ToDoTable :editable="false" :tasks="tasks" />
         </div>
+        <PopUp :message="popUpMessage" :visible="isPopUpVisible" @update:visible="isPopUpVisible = $event" />
     </div>
 </template>
 
